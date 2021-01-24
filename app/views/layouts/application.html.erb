@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @page_title ?  @page_title : 'welcome' %> | The Bookstore</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+ 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="<%= params[:controller] == 'books' ? 'active' : ''  %>">
+        <%= link_to 'Home', root_path, class: "nav-link" %>       
+      </li>
+
+      <li class="<%= params[:controller] == 'about' ? 'active' : ''  %>"">
+        <%= link_to 'About', about_path, class: "nav-link" %>       
+      </li> 
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Add Item
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <ul>
+            <li><%= link_to 'Book', new_book_path, class: "nav-link" %></li>
+            <li><%= link_to 'Category', new_category_path, class: "nav-link" %></li>
+            <li><%= link_to 'Author', new_author_path, class: "nav-link" %></li>
+            <li><%= link_to 'Publishers', new_publisher_path, class: "nav-link" %></li>
+          </ul>
+        </div>
+      </li>
+     
+    </ul>
+   
+  </div>
+</nav>
+<header>
+  <div class="container">
+    <h1>The Bookstore <small><%= @page_title ?  @page_title : 'welcome' %></small></h1>
+  </div>
+</header>
+
+   <section>
+    <div class="container">
+       <div class="row">
+        <div class="col-md-8">
+        
+          <% if flash[:notice] %>
+            <div class="alert alert-success"><%= flash[:notice] %></div>
+          <% end %>
+
+           <% if flash[:alert] %>
+            <div class="alert alert-danger"><%= flash[:alert] %></div>
+          <% end %>
+
+          <%= yield %>
+        </div>
+        <div class="col-md-4">
+           <%= render 'partials/sidebar' %>
+        </div>
+       </div>
+    </div>
+   </section>
+
+   <footer>
+    <div class="container">
+      <p>Copyright &copy: 2014, All rights reserved </p>
+    </div>
+   </footer>
+  </body>
+</html>

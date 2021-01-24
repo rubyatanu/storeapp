@@ -1,0 +1,18 @@
+<% if params[:controller] == 'about' %>
+<div class="card bg-light">
+    <h3>location info</h3>
+    <ul>
+      <li>Atanu Marick</li>
+      <li>Risra</li>
+      <li>Trainee Associate Engg</li>
+      <li>Web development</li>
+    </ul>
+</div>
+<% end %>
+<% if params[:controller] == 'books' && params[:action] == 'index' || params[:action] == 'show' %>
+<ul class="list-group">  
+  <li class="list-group-item">Ruby On Rails</li>
+  <li class="list-group-item">PHP</li>
+  <li class="list-group-item">HTML5</li>
+</ul>
+<% end %>
